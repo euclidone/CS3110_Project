@@ -11,6 +11,9 @@ public class universalFA {
 
 
 
+        if(testStringArray.length == 1) {
+            return false;
+        }
         while(!exit) {
             char currentSymbol = nextSymbol(testStringArray, index);
             if(contains(alphabetArray, currentSymbol)) { // Check if the symbol is in the alphabet
@@ -58,18 +61,45 @@ public class universalFA {
     public State nextState(State currentState, char currentSymbol, int[][] transitionTable, State[] setOfStates) {
         // This section is experimental but the only thing needed for the first 2 cases is the value 48 instead of the
         // asciiSubtractorValue variable
+        int stateNumber = currentState.getStateNumber();
+
+
         int asciiSubtractorValue = 0;
         if(currentSymbol - 48 >= 0 && currentSymbol - 48 <= 9) { // symbol is a digit
+
             asciiSubtractorValue = 48;
+            int testCurrentSymbol = (int) currentSymbol; // Converting symbol to its ascii value for the next step
+
+
+            if(testCurrentSymbol - 48 >= transitionTable[0].length) {
+                // If the number minus the ascii value of 0 (48) is >= the number of columns in the 2d array then make
+                // it be state 1
+
+
+                asciiSubtractorValue = (int) testCurrentSymbol - 1 ;
+                // This is how we end up with symbolIndex 1 for when numbers are > the number of columns in the 2d array
+
+            }
+
         }
         else if(currentSymbol - 48 >= 17 && currentSymbol - 48 <= 42) { // symbol is an uppercase letter
-            asciiSubtractorValue = 65;
+
+            asciiSubtractorValue = (int) currentSymbol;
+
         }
         else if(currentSymbol - 48 >= 49 && currentSymbol - 48 <= 74) { // symbol is a lowercase letter
-            asciiSubtractorValue = 97;
+            asciiSubtractorValue = (int) currentSymbol;
+            // Setting up the calculation to give 0 for symbolIndex
+        }
+        else {
+            asciiSubtractorValue = (int) currentSymbol;
         }
 
-        return setOfStates[transitionTable[currentState.getStateNumber()][currentSymbol - asciiSubtractorValue]];
+        int symbolIndex = currentSymbol - asciiSubtractorValue;
+        // Calculation to find the second index of transitionTable
+
+
+        return setOfStates[transitionTable[stateNumber][symbolIndex]];
 
 
 
