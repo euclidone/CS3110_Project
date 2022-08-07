@@ -119,7 +119,7 @@ public class Main {
                 "X3Y7", "X=90", "X*Y"};
 
         String[] m3AdditionalTest = {"abc/?", "4234?", "nfv32?", "sjfre.?", "python?", "automata_?", "JelaKc?", "J9J91?",
-                "1987uyjk?", "9nu7j98?"};
+                "0987uyjk?", "9nu7j98?"};
         String[] m3AdditionalTestDisplay = {"abc/", "4234", "nfv32", "sjfre.", "python", "automata_", "JelaKc", "J9J91",
                 "0987uyjk", "9nu7j98"};
 
@@ -165,6 +165,8 @@ public class Main {
         boolean[] m4FinalStates = {false, true, true, false};
         char[] m4Alphabet = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
         int[][] m4Table = {{2, 1}, {1, 1}, {3, 3}};
+        String[][] m4TransTable ={{"0", "0", "2"}, {"0", "1", "1"}, {"1", "0", "1"}, {"1", "1", "1"}, {"2", "0", "3"},
+                {"2", "1", "3"}};
 
 
         String[] m4Test = {"2?", "-7?", "007?", "3.14?", "103?", "24930000?", "0?", "01?", "100?", "0101?"};
@@ -179,9 +181,10 @@ public class Main {
         System.out.println("2) Final states: 2, 3");
         System.out.println("3) Alphabet: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9");
         System.out.print("4) Transitions: \n");
-        for (int i = 0; i < m4Table.length; i++){
-            for (int j = 0; j < m4Table.length-1; j++){
-                System.out.print("\t" + m4Table[i][j] + " ");
+
+        for (int i = 0; i < m4TransTable.length; i++){
+            for (int j = 0; j < m4TransTable.length - 3; j++){
+                System.out.print("\t" + m4TransTable[i][j] + " ");
             }
             System.out.println();
         }
