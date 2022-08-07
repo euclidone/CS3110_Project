@@ -5,8 +5,8 @@ public class Main {
         universalFA m1 = new universalFA();
         State m1s1 = new State(0);
         State m1s2 = new State(1);
-
-        State[] m1States = {m1s1, m1s2};
+        State m1s3 = new State(2);
+        State[] m1States = {m1s1, m1s2, m1s3};
         boolean[] m1FinalStates = {true, false};
         char[] m1Alphabet = {'0', '1'};
         int[][] m1Table = {{0, 1}, {0, 1}};
@@ -19,7 +19,7 @@ public class Main {
         String[] m1AdditionalTestDisplay = {"0", "001", "121", "111101", "x", "1+", "0001110", "01010101010", "1011111", "0101110"};
 
         System.out.println("Finite State Automaton #1");
-        System.out.println("1) Number of states: 2");
+        System.out.println("1) Number of states: 3");
         System.out.println("2) Final states: 0, 1");
         System.out.println("3) Alphabet: 0, 1");
         System.out.print("4) Transitions: \n");
