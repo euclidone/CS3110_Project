@@ -3,7 +3,6 @@ public class Symbol {
 
     public Symbol(char inputCharacter) {
         this.symbol = inputCharacter;
-
     }
 
     public char getSymbol() {
