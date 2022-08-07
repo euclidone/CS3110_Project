@@ -1,8 +1,7 @@
 //import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
 
 public class Main {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         universalFA m1 = new universalFA();
         State m1s1 = new State(0);
         State m1s2 = new State(1);
@@ -11,42 +10,40 @@ public class Main {
         boolean[] m1FinalStates = {true, true, false};
         char[] m1Alphabet = {'0', '1'};
         int[][] m1Table = {{0, 1}, {0, 2}};
+        int[][] m1TransTable = {{0,0,1},{0,1,2},{1,0,1},{1,1,2},{2,1,2},{2,0,0}};
 
+        String[] m1Test = {"?", "100?", "011?", "10abc1?", "0?", "1?", "0101011?", "11010?", "0001?", "1110?"};
+        String[] m1TestDisplay = {"Λ", "100", "011", "10abc1", "0", "1", "0101011", "11010", "0001", "1110"};
 
-        String[] m1Test = {"?", "1?", "000?", "101?", "111?", "01001?", "1011011?", "1011000?", "01010?", "1010101110?"};
-        String[] m1TestDisplay = {"Λ", "1", "000", "101", "111", "01001", "1011011", "1011000", "01010", "1010101110"};
-
-        String[] m1AdditionalTest = {"0?", "010?", "110?", "10101?", "10000111?", "1110111?", "11111?", "000000?",
-                "01101101?", "010101010101010101?"};
-        String[] m1AdditionalTestDisplay = {"0", "010", "110", "10101", "10000111", "1110111", "11111", "000000",
-                "01101101", "010101010101010101"};
+        String[] m1AdditionalTest = {"0?", "001?", "121?", "111101?", "x?", "1+?", "0001110?", "01010101010?", "1011111?", "0101110?"};
+        String[] m1AdditionalTestDisplay = {"0", "001", "121", "111101", "x", "1+", "0001110", "01010101010", "1011111", "0101110"};
 
         System.out.println("Finite State Automaton #1");
         System.out.println("1) Number of states: 3");
         System.out.println("2) Final states: 0, 1");
         System.out.println("3) Alphabet: Λ, 1, 000, 101, 111, 01001, 1011011, 1011000, 01010, 1010101110");
         System.out.print("4) Transitions: \n");
-        for (int i = 0; i < m1Table.length; i++){
-            for (int j = 0; j < m1Table.length; j++){
-                System.out.print("\t" + m1Table[i][j] + " ");
+
+        for (int i = 0; i < m1TransTable.length; i++){
+            for (int j = 0; j < m1TransTable.length - 3; j++){
+                System.out.print("\t" + m1TransTable[i][j] + " ");
             }
             System.out.println();
         }
+
         System.out.print("5) Strings: ");
-        for(int i = 0; i < m1Test.length; i++)
-        {
-            System.out.print("\n\t" + m1AdditionalTestDisplay[i] + " ");
-            if(!m1.generalTransitionAlgorithm(m1States, m1FinalStates,
-                    m1Alphabet, m1Table, m1AdditionalTest[i]))
+        for (int i = 0; i < m1Test.length; i++) {
+            System.out.print("\n\t" + m1TestDisplay[i] + " ");
+            if (!m1.generalTransitionAlgorithm(m1States, m1FinalStates,
+                    m1Alphabet, m1Table, m1Test[i]))
                 System.out.print("Reject");
             else
                 System.out.print("Accept");
         }
         System.out.print("\n6) Additional Strings: ");
-        for(int i = 0; i < m1AdditionalTest.length; i++)
-        {
+        for (int i = 0; i < m1AdditionalTest.length; i++) {
             System.out.print("\n\t" + m1AdditionalTestDisplay[i] + " ");
-            if(!m1.generalTransitionAlgorithm(m1States, m1FinalStates,
+            if (!m1.generalTransitionAlgorithm(m1States, m1FinalStates,
                     m1Alphabet, m1Table, m1AdditionalTest[i]))
                 System.out.print("Reject");
             else
@@ -61,13 +58,15 @@ public class Main {
         boolean[] m2FinalStates = {true, false};
         char[] m2Alphabet = {'0', '1'};
         int[][] m2Table = {{0, 1}, {0, 1}};
+        int[][] m2TransTable = {{0,0,0},{0,1,1},{1,0,0},{1,1,1}};
 
+        String[] m2Test = {"?", "1?", "000?", "101?", "111?", "01001?", "1011011?", "1011000?", "01010?", "1010101110?"};
+        String[] m2TestDisplay = {"Λ", "1", "000", "101", "111", "01001", "1011011", "1011000", "01010", "1010101110"};
 
-        String[] m2Test = {"?", "100?", "011?", "10abc1?", "0?", "1?", "0101011?", "11010?", "0001?", "1110?"};
-        String[] m2TestDisplay = {"Λ", "100", "011", "10abc1", "0", "1", "0101011", "11010", "0001", "1110"};
-
-        String[] m2AdditionalTest = {"0?", "001?", "121?", "111101?", "x?", "1+?", "0001110?", "01010101010?", "1011111?", "0101110?"};
-        String[] m2AdditionalTestDisplay = {"0", "001", "121", "111101", "x", "1+", "0001110", "01010101010", "1011111", "0101110"};
+        String[] m2AdditionalTest = {"0?", "010?", "110?", "10101?", "10000111?", "1110111?", "11111?", "000000?",
+                "01101101?", "010101010101010101?"};
+        String[] m2AdditionalTestDisplay = {"0", "010", "110", "10101", "10000111", "1110111", "11111", "000000",
+                "01101101", "010101010101010101"};
 
         System.out.println("\n");
         System.out.println("Finite State Automaton #2");
@@ -75,27 +74,25 @@ public class Main {
         System.out.println("2) Final states: 1");
         System.out.println("3) Alphabet: 0, 1");
         System.out.print("4) Transitions: \n");
-        for (int i = 0; i < m2Table.length; i++){
-            for (int j = 0; j < m2Table.length; j++){
-                System.out.print("\t" + m2Table[i][j] + " ");
+        for (int i = 0; i < m2TransTable.length; i++) {
+            for (int j = 0; j < m2TransTable.length - 1; j++) {
+                System.out.print("\t" + m2TransTable[i][j] + " ");
             }
             System.out.println();
         }
         System.out.print("5) Strings: ");
-        for(int i = 0; i < m2Test.length; i++)
-        {
+        for (int i = 0; i < m2Test.length; i++) {
             System.out.print("\n\t" + m2TestDisplay[i] + " ");
-            if(!m2.generalTransitionAlgorithm(m2States, m2FinalStates,
+            if (!m2.generalTransitionAlgorithm(m2States, m2FinalStates,
                     m2Alphabet, m2Table, m2Test[i]))
                 System.out.print("Reject");
             else
                 System.out.print("Accept");
         }
         System.out.print("\n6) Additional Strings: ");
-        for(int i = 0; i < m2AdditionalTest.length; i++)
-        {
+        for (int i = 0; i < m2AdditionalTest.length; i++) {
             System.out.print("\n\t" + m2AdditionalTestDisplay[i] + " ");
-            if(!m2.generalTransitionAlgorithm(m2States, m2FinalStates,
+            if (!m2.generalTransitionAlgorithm(m2States, m2FinalStates,
                     m2Alphabet, m2Table, m2AdditionalTest[i]))
                 System.out.print("Reject");
             else
@@ -115,7 +112,7 @@ public class Main {
 
         int[][] m3Table = {{1, 2}, {1, 1}};
 
-
+        String[][] m3TransTable = {{"0","L","1"},{"1","L","1"},{"1", "D", "1"},{"0","D","2"},{"2","L","2"},{"2","D","2"}};
         String[] m3Test = {"?", "HelloWorld?", "abc?", "1st_Ex?", "Java?", "_finite_automaton?", "program?", "X3Y7?",
                 "X=90?", "X*Y?"};
         String[] m3TestDisplay = {"Λ",  "HelloWorld", "abc", "1st_Ex", "Java", "_finite_automaton", "program",
@@ -125,15 +122,16 @@ public class Main {
                 "0987uyjk?", "9nu7j98?"};
         String[] m3AdditionalTestDisplay = {"abc/", "4234", "nfv32", "sjfre.", "python", "automata_", "JelaKc", "J9J91",
                 "0987uyjk", "9nu7j98"};
+
         System.out.println("\n");
         System.out.println("Finite State Automaton #3");
         System.out.println("1) Number of states: 3");
-        System.out.println("2) Final states: 2");
+        System.out.println("2) Final state: 2");
         System.out.println("3) Alphabet: [a-zA-Z], [0-9]");
         System.out.print("4) Transitions: \n");
-        for (int i = 0; i < m3Table.length; i++){
-            for (int j = 0; j < m3Table.length; j++){
-                System.out.print("\t" + m3Table[i][j] + " ");
+        for (int i = 0; i < m3TransTable.length; i++){
+            for (int j = 0; j < m3TransTable.length - 3; j++){
+                System.out.print("\t" + m3TransTable[i][j] + " ");
             }
             System.out.println();
         }
@@ -147,7 +145,7 @@ public class Main {
             else
                 System.out.print("Accept");
         }
-        System.out.print("6) Strings: ");
+        System.out.print("\n6) Strings: ");
         for(int i = 0; i < m3AdditionalTest.length; i++)
         {
             System.out.print("\n\t" + m3AdditionalTestDisplay[i] + " ");
@@ -197,7 +195,7 @@ public class Main {
             else
                 System.out.print("Accept");
         }
-        System.out.print("6) Strings: ");
+        System.out.print("\n6) Strings: ");
         for(int i = 0; i < m4AdditionalTest.length; i++)
         {
             System.out.print("\n\t" + m4AdditionalTestDisplay[i] + " ");

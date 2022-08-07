@@ -97,8 +97,6 @@ public class universalFA {
 
         int symbolIndex = currentSymbol - asciiSubtractorValue;
         // Calculation to find the second index of transitionTable
-
-
         return setOfStates[transitionTable[stateNumber][symbolIndex]];
 
 
