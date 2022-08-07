@@ -55,9 +55,9 @@ public class Main {
         State m2s2 = new State(1);
         State m2s3 = new State(2);
         State[] m2States = {m2s1, m2s2, m2s3};
-        boolean[] m2FinalStates = {true, false};
+        boolean[] m2FinalStates = {true, true, false};
         char[] m2Alphabet = {'0', '1'};
-        int[][] m2Table = {{0, 1}, {0, 1}};
+        int[][] m2Table = {{0, 1}, {0, 2}};
         int[][] m2TransTable = {{0,0,0},{0,1,1},{1,0,0},{1,1,1}};
 
         String[] m2Test = {"?", "1?", "000?", "101?", "111?", "01001?", "1011011?", "1011000?", "01010?", "1010101110?"};
@@ -119,7 +119,7 @@ public class Main {
                 "X3Y7", "X=90", "X*Y"};
 
         String[] m3AdditionalTest = {"abc/?", "4234?", "nfv32?", "sjfre.?", "python?", "automata_?", "JelaKc?", "J9J91?",
-                "0987uyjk?", "9nu7j98?"};
+                "1987uyjk?", "9nu7j98?"};
         String[] m3AdditionalTestDisplay = {"abc/", "4234", "nfv32", "sjfre.", "python", "automata_", "JelaKc", "J9J91",
                 "0987uyjk", "9nu7j98"};
 
